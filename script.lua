@@ -1,1 +1,382 @@
-local p,g=game.Players.LocalPlayer,game;local u,r,P=g:GetService("UserInputService"),g:GetService("RunService"),g:GetService("PhysicsService");pcall(function()P:CreateCollisionGroup("NoClipGroup")end)or(P:RemoveCollisionGroup("NoClipGroup");P:CreateCollisionGroup("NoClipGroup"));P:CollisionGroupSetCollidable("NoClipGroup","Default",false);local U=Instance.new("ScreenGui");U.Name="KaratelHub_UI";U.ResetOnSpawn=false;U.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;U.Parent=p:WaitForChild("PlayerGui");local M=Instance.new("Frame");M.Size=UDim2.new(0,420,0,520);M.Position=UDim2.new(0.5,-210,0.5,-260);M.BackgroundTransparency=0.2;M.BackgroundColor3=Color3.fromRGB(15,15,15);M.BorderSizePixel=0;M.Draggable=true;M.Active=true;M.Parent=U;local T=Instance.new("Frame");T.Size=UDim2.new(1,0,0,40);T.BackgroundTransparency=0.3;T.BackgroundColor3=Color3.fromRGB(255,165,0);T.BorderSizePixel=0;T.Parent=M;local L=Instance.new("TextLabel");L.Size=UDim2.new(1,-80,1,0);L.BackgroundTransparency=1;L.Text="⚡ Karatel Hub | Ink Game";L.TextColor3=Color3.fromRGB(255,255,255);L.TextSize=18;L.Font=Enum.Font.GothamBold;L.Parent=T;local C=Instance.new("TextButton");C.Size=UDim2.new(0,40,0,40);C.Position=UDim2.new(1,-40,0,0);C.BackgroundTransparency=0.3;C.BackgroundColor3=Color3.fromRGB(255,80,80);C.Text="✕";C.TextColor3=Color3.fromRGB(255,255,255);C.TextSize=24;C.Font=Enum.Font.SourceSansBold;C.Parent=T;local F=Instance.new("Frame");F.Size=UDim2.new(1,0,1,-40);F.Position=UDim2.new(0,0,0,40);F.BackgroundTransparency=1;F.Parent=M;local t,b={},{};local function X(n,y)local B=Instance.new("TextButton");B.Size=UDim2.new(0.25,0,0,40);B.Position=UDim2.new(0,y*105,0,0);B.Text=n;B.TextColor3=Color3.fromRGB(200,200,200);B.BackgroundColor3=Color3.fromRGB(30,30,30);B.BorderSizePixel=0;B.Font=Enum.Font.SourceSans;B.TextSize=14;B.Parent=F;local c=Instance.new("ScrollingFrame");c.Size=UDim2.new(1,0,1,0);c.Position=UDim2.new(0,0,0,40);c.BackgroundTransparency=1;c.Visible=false;c.CanvasSize=UDim2.new(0,0,0,400);c.ScrollBarThickness=4;c.Parent=F;B.MouseButton1Click:Connect(function()for _,v in pairs(b)do v.BackgroundColor3=Color3.fromRGB(30,30,30);v.TextColor3=Color3.fromRGB(200,200,200)end;for _,v in pairs(t)do v.Visible=false end;B.BackgroundColor3=Color3.fromRGB(255,165,0);B.TextColor3=Color3.fromRGB(255,255,255);c.Visible=true end);table.insert(b,B);table.insert(t,c);if#t==1 then B.BackgroundColor3=Color3.fromRGB(255,165,0);B.TextColor3=Color3.fromRGB(255,255,255);c.Visible=true end;return c end;local function A(P,t,y,f)local B=Instance.new("TextButton");B.Size=UDim2.new(1,-20,0,40);B.Position=UDim2.new(0,10,0,y);B.Text=t;B.TextColor3=Color3.fromRGB(255,255,255);B.BackgroundColor3=Color3.fromRGB(40,40,40);B.BorderSizePixel=0;B.Font=Enum.Font.SourceSans;B.TextSize=16;B.Parent=P;B.MouseButton1Click:Connect(f);return B end;local function O(P,t,y,d,f)local L=Instance.new("TextLabel");L.Size=UDim2.new(0.6,0,0,30);L.Position=UDim2.new(0,10,0,y);L.BackgroundTransparency=1;L.Text=t;L.TextColor3=Color3.fromRGB(255,255,255);L.TextSize=16;L.Parent=P;local T=Instance.new("TextButton");T.Size=UDim2.new(0.3,0,0,30);T.Position=UDim2.new(0.7,0,0,y);T.Text=d and"ON"or"OFF";T.TextColor3=d and Color3.fromRGB(100,255,100)or Color3.fromRGB(255,100,100);T.BackgroundColor3=Color3.fromRGB(50,50,50);T.BorderSizePixel=0;T.Font=Enum.Font.SourceSans;T.TextSize=16;T.Parent=P;T.MouseButton1Click:Connect(function()d=not d;T.Text=d and"ON"or"OFF";T.TextColor3=d and Color3.fromRGB(100,255,100)or Color3.fromRGB(255,100,100);f(d)end);return T end;local function I(P,t,y,d,f)local L=Instance.new("TextLabel");L.Size=UDim2.new(0.6,0,0,30);L.Position=UDim2.new(0,10,0,y);L.BackgroundTransparency=1;L.Text=t;L.TextColor3=Color3.fromRGB(255,255,255);L.TextSize=16;L.Parent=P;local i=Instance.new("TextBox");i.Size=UDim2.new(0.3,0,0,30);i.Position=UDim2.new(0.7,0,0,y);i.Text=tostring(d);i.BackgroundColor3=Color3.fromRGB(50,50,50);i.TextColor3=Color3.fromRGB(255,255,255);i.Font=Enum.Font.SourceSans;i.TextSize=16;i.Parent=P;local A=Instance.new("TextButton");A.Size=UDim2.new(0.2,0,0,30);A.Position=UDim2.new(1,-70,0,y);A.Text="Apply";A.TextColor3=Color3.fromRGB(255,255,255);A.BackgroundColor3=Color3.fromRGB(70,70,70);A.BorderSizePixel=0;A.Font=Enum.Font.SourceSans;A.TextSize=14;A.Parent=P;A.MouseButton1Click:Connect(function()f(tonumber(i.Text)or d)end);return i end;local m,c,v,s=X("Movement",0),X("Combat",1),X("Visuals",2),X("Safety",3);local N,F,E,K,S,A,w,j,f=false,false,false,false,false,false,16,50,50;A(m,"↑ Teleport +100",10,function()local C=p.Character;if C and C:FindFirstChild("HumanoidRootPart")then C.HumanoidRootPart.CFrame=C.HumanoidRootPart.CFrame+Vector3.new(0,100,0)end end);A(m,"↓ Teleport -40",60,function()local C=p.Character;if C and C:FindFirstChild("HumanoidRootPart")then C.HumanoidRootPart.CFrame=C.HumanoidRootPart.CFrame+Vector3.new(0,-40,0)end end);O(m,"NoClip",110,false,function(e)N=e;local C=p.Character;if C then for _,v in ipairs(C:GetDescendants())do if v:IsA("BasePart")then P:SetPartCollisionGroup(v,e and"NoClipGroup"or"Default")end end end end);O(m,"Fly",160,false,function(e)F=e end);I(m,"WalkSpeed",210,16,function(e)w=e;local C=p.Character;if C and C:FindFirstChild("Humanoid")then C.Humanoid.WalkSpeed=e end end);I(m,"JumpPower",260,50,function(e)j=e;local C=p.Character;if C and C:FindFirstChild("Humanoid")then C.Humanoid.JumpPower=e end end);I(m,"Fly Speed",310,50,function(e)f=e end);O(c,"Kill Aura",10,false,function(e)K=e end);O(v,"ESP (Hide'n Seek)",10,false,function(e)E=e end);O(s,"Safe Mode (<20 HP)",10,false,function(e)S=e end);O(s,"Auto Teleport (10s)",60,false,function(e)A=e end);C.MouseButton1Click:Connect(function()U:Destroy()end);u.InputBegan:Connect(function(i,g)if i.KeyCode==Enum.KeyCode.G and not g then U.Enabled=not U.Enabled end end);local l,z=0,nil;r.Heartbeat:Connect(function(d)local C,h,C2=p.Character,p.Character and p.Character:FindFirstChild("HumanoidRootPart"),p.Character and p.Character:FindFirstChild("Humanoid");if not h or not C2 then return end;C2.WalkSpeed=w;C2.JumpPower=j;if F then local v=Vector3.new(0,0,0);if u:IsKeyDown(Enum.KeyCode.W)then v=v+h.CFrame.LookVector*f end;if u:IsKeyDown(Enum.KeyCode.S)then v=v-h.CFrame.LookVector*f end;if u:IsKeyDown(Enum.KeyCode.A)then v=v-h.CFrame.RightVector*f end;if u:IsKeyDown(Enum.KeyCode.D)then v=v+h.CFrame.RightVector*f end;if u:IsKeyDown(Enum.KeyCode.Space)then v=v+Vector3.new(0,f,0)end;if u:IsKeyDown(Enum.KeyCode.LeftControl)then v=v-Vector3.new(0,f,0)end;h.Velocity=v end;if K then local c,D=nil,math.huge;for _,P in ipairs(g.Players:GetPlayers())do if P~=p and P.Character and P.Character:FindFirstChild("HumanoidRootPart")then local D2=(h.Position-P.Character.HumanoidRootPart.Position).Magnitude;if D2<D then c,D=P,D2 end end end;if c and c.Character and c.Character:FindFirstChild("HumanoidRootPart")then z=c;local t=c.Character.HumanoidRootPart.Position;local o=CFrame.lookAt(h.Position,t)*CFrame.new(0,0,-3);h.CFrame=CFrame.lookAt(o.Position,t)*CFrame.Angles(0,math.rad(os.clock()*360),0)end end;if S and C2.Health<20 then if not A then h.CFrame=h.CFrame+Vector3.new(0,150,0);S=false else l=l+d;if l>=10 then l=0;h.CFrame=h.CFrame+Vector3.new(0,150,0)end end end end);r.RenderStepped:Connect(function()if not E then for _,o in ipairs(workspace.CurrentCamera:GetChildren())do if o.Name=="ESP_BOX"or o.Name=="ESP_TEXT"then o:Destroy()end end;return end;for _,P in ipairs(g.Players:GetPlayers())do if P~=p and P.Character and P.Character:FindFirstChild("HumanoidRootPart")then local h,k=P.Character.HumanoidRootPart,false;for _,c in ipairs(P.Character:GetChildren())do if c:IsA("Tool")and(c.Name=="Knife"or c.Name=="Fork"or c.Name=="Bottle"or c.Name=="Fists")then k=true;break end end;local b=Instance.new("BoxHandleAdornment");b.Name="ESP_BOX";b.Adornee=h;b.Size=Vector3.new(2,5,1);b.Color3=k and Color3.fromRGB(255,0,0)or Color3.fromRGB(0,100,255);b.Transparency=0.5;b.AlwaysOnTop=true;b.ZIndex=10;b.Parent=workspace.CurrentCamera;local B=Instance.new("BillboardGui");B.Name="ESP_TEXT";B.Adornee=h;B.Size=UDim2.new(0,120,0,40);B.StudsOffset=Vector3.new(0,3,0);B.AlwaysOnTop=true;B.Parent=workspace.CurrentCamera;local L=Instance.new("TextLabel");L.BackgroundTransparency=1;L.Size=UDim2.new(1,0,1,0);L.Text=P.Name;L.TextColor3=k and Color3.fromRGB(255,100,100)or Color3.fromRGB(100,200,255);L.TextStrokeColor3=Color3.fromRGB(0,0,0);L.TextStrokeTransparency=0;L.TextSize=16;L.Font=Enum.Font.GothamBold;L.Parent=B end end end);print("✅ Karatel Hub успешно загружен! Нажмите G для скрытия/показа меню.")
+-- 🚨 СТАНДАРТНОЕ УВЕДОМЛЕНИЕ О ЗАПУСКЕ (ЧЕРЕЗ HINT)
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "⚡ Karatel Hub",
+    Text = "Скрипт успешно активирован!",
+    Duration = 5,
+    Button1 = "OK"
+})
+
+-- 💥 ОСНОВНОЙ СКРИПТ (ИСПРАВЛЕННЫЙ)
+local p, g = game.Players.LocalPlayer, game
+local u, r, P = g:GetService("UserInputService"), g:GetService("RunService"), g:GetService("PhysicsService")
+
+-- Создаём группу NoClip
+pcall(function() P:CreateCollisionGroup("NoClipGroup") end) or (P:RemoveCollisionGroup("NoClipGroup"); P:CreateCollisionGroup("NoClipGroup"))
+P:CollisionGroupSetCollidable("NoClipGroup", "Default", false)
+
+-- UI
+local U = Instance.new("ScreenGui")
+U.Name = "KaratelHub_UI"
+U.ResetOnSpawn = false
+U.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+U.Parent = p:WaitForChild("PlayerGui")
+
+local M = Instance.new("Frame")
+M.Size = UDim2.new(0, 420, 0, 520)
+M.Position = UDim2.new(0.5, -210, 0.5, -260)
+M.BackgroundTransparency = 0.2
+M.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+M.BorderSizePixel = 0
+M.Draggable = true
+M.Active = true
+M.Parent = U
+
+local T = Instance.new("Frame")
+T.Size = UDim2.new(1, 0, 0, 40)
+T.BackgroundTransparency = 0.3
+T.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
+T.BorderSizePixel = 0
+T.Parent = M
+
+local L = Instance.new("TextLabel")
+L.Size = UDim2.new(1, -80, 1, 0)
+L.BackgroundTransparency = 1
+L.Text = "⚡ Karatel Hub | Ink Game"
+L.TextColor3 = Color3.fromRGB(255, 255, 255)
+L.TextSize = 18
+L.Font = Enum.Font.GothamBold
+L.Parent = T
+
+local C = Instance.new("TextButton")
+C.Size = UDim2.new(0, 40, 0, 40)
+C.Position = UDim2.new(1, -40, 0, 0)
+C.BackgroundTransparency = 0.3
+C.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+C.Text = "✕"
+C.TextColor3 = Color3.fromRGB(255, 255, 255)
+C.TextSize = 24
+C.Font = Enum.Font.SourceSansBold
+C.Parent = T
+
+local F = Instance.new("Frame")
+F.Size = UDim2.new(1, 0, 1, -40)
+F.Position = UDim2.new(0, 0, 0, 40)
+F.BackgroundTransparency = 1
+F.Parent = M
+
+local tabs, tabBtns = {}, {}
+local function createTab(name, idx)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0.25, 0, 0, 40)
+    btn.Position = UDim2.new(0, idx*105, 0, 0)
+    btn.Text = name
+    btn.TextColor3 = Color3.fromRGB(200,200,200)
+    btn.BackgroundColor3 = Color3.fromRGB(30,30,30)
+    btn.BorderSizePixel = 0
+    btn.Font = Enum.Font.SourceSans
+    btn.TextSize = 14
+    btn.Parent = F
+
+    local cont = Instance.new("ScrollingFrame")
+    cont.Size = UDim2.new(1, 0, 1, 0)
+    cont.Position = UDim2.new(0, 0, 0, 40)
+    cont.BackgroundTransparency = 1
+    cont.Visible = false
+    cont.CanvasSize = UDim2.new(0, 0, 0, 400)
+    cont.ScrollBarThickness = 4
+    cont.Parent = F
+
+    btn.MouseButton1Click:Connect(function()
+        for _,b in pairs(tabBtns) do
+            b.BackgroundColor3 = Color3.fromRGB(30,30,30)
+            b.TextColor3 = Color3.fromRGB(200,200,200)
+        end
+        for _,c in pairs(tabs) do c.Visible = false end
+        btn.BackgroundColor3 = Color3.fromRGB(255,165,0)
+        btn.TextColor3 = Color3.fromRGB(255,255,255)
+        cont.Visible = true
+    end)
+
+    table.insert(tabBtns, btn)
+    table.insert(tabs, cont)
+    if #tabs == 1 then
+        btn.BackgroundColor3 = Color3.fromRGB(255,165,0)
+        btn.TextColor3 = Color3.fromRGB(255,255,255)
+        cont.Visible = true
+    end
+    return cont
+end
+
+local function btn(parent, text, y, cb)
+    local b = Instance.new("TextButton")
+    b.Size = UDim2.new(1, -20, 0, 40)
+    b.Position = UDim2.new(0, 10, 0, y)
+    b.Text = text
+    b.TextColor3 = Color3.fromRGB(255,255,255)
+    b.BackgroundColor3 = Color3.fromRGB(40,40,40)
+    b.BorderSizePixel = 0
+    b.Font = Enum.Font.SourceSans
+    b.TextSize = 16
+    b.Parent = parent
+    b.MouseButton1Click:Connect(cb)
+    return b
+end
+
+local function toggle(parent, text, y, def, cb)
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(0.6, 0, 0, 30)
+    lbl.Position = UDim2.new(0, 10, 0, y)
+    lbl.BackgroundTransparency = 1
+    lbl.Text = text
+    lbl.TextColor3 = Color3.fromRGB(255,255,255)
+    lbl.TextSize = 16
+    lbl.Parent = parent
+
+    local tog = Instance.new("TextButton")
+    tog.Size = UDim2.new(0.3, 0, 0, 30)
+    tog.Position = UDim2.new(0.7, 0, 0, y)
+    tog.Text = def and "ON" or "OFF"
+    tog.TextColor3 = def and Color3.fromRGB(100,255,100) or Color3.fromRGB(255,100,100)
+    tog.BackgroundColor3 = Color3.fromRGB(50,50,50)
+    tog.BorderSizePixel = 0
+    tog.Font = Enum.Font.SourceSans
+    tog.TextSize = 16
+    tog.Parent = parent
+
+    tog.MouseButton1Click:Connect(function()
+        def = not def
+        tog.Text = def and "ON" or "OFF"
+        tog.TextColor3 = def and Color3.fromRGB(100,255,100) or Color3.fromRGB(255,100,100)
+        cb(def)
+    end)
+    return tog
+end
+
+local function input(parent, text, y, def, cb)
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(0.6, 0, 0, 30)
+    lbl.Position = UDim2.new(0, 10, 0, y)
+    lbl.BackgroundTransparency = 1
+    lbl.Text = text
+    lbl.TextColor3 = Color3.fromRGB(255,255,255)
+    lbl.TextSize = 16
+    lbl.Parent = parent
+
+    local inp = Instance.new("TextBox")
+    inp.Size = UDim2.new(0.3, 0, 0, 30)
+    inp.Position = UDim2.new(0.7, 0, 0, y)
+    inp.Text = tostring(def)
+    inp.BackgroundColor3 = Color3.fromRGB(50,50,50)
+    inp.TextColor3 = Color3.fromRGB(255,255,255)
+    inp.Font = Enum.Font.SourceSans
+    inp.TextSize = 16
+    inp.Parent = parent
+
+    local apply = Instance.new("TextButton")
+    apply.Size = UDim2.new(0.2, 0, 0, 30)
+    apply.Position = UDim2.new(1, -70, 0, y)
+    apply.Text = "Apply"
+    apply.TextColor3 = Color3.fromRGB(255,255,255)
+    apply.BackgroundColor3 = Color3.fromRGB(70,70,70)
+    apply.BorderSizePixel = 0
+    apply.Font = Enum.Font.SourceSans
+    apply.TextSize = 14
+    apply.Parent = parent
+
+    apply.MouseButton1Click:Connect(function()
+        cb(tonumber(inp.Text) or def)
+    end)
+    return inp
+end
+
+local mTab = createTab("Movement", 0)
+local cTab = createTab("Combat", 1)
+local vTab = createTab("Visuals", 2)
+local sTab = createTab("Safety", 3)
+
+local noClip, fly, esp, killAura, safeMode, autoTp = false, false, false, false, false, false
+local ws, jp, flySpd = 16, 50, 50
+
+-- Movement
+btn(mTab, "↑ Teleport +100", 10, function()
+    local char = p.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        char.HumanoidRootPart.CFrame = char.HumanoidRootPart.CFrame + Vector3.new(0, 100, 0)
+    end
+end)
+
+btn(mTab, "↓ Teleport -40", 60, function()
+    local char = p.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        char.HumanoidRootPart.CFrame = char.HumanoidRootPart.CFrame + Vector3.new(0, -40, 0)
+    end
+end)
+
+toggle(mTab, "NoClip", 110, false, function(state)
+    noClip = state
+    local char = p.Character
+    if char then
+        for _, part in ipairs(char:GetDescendants()) do
+            if part:IsA("BasePart") then
+                P:SetPartCollisionGroup(part, state and "NoClipGroup" or "Default")
+            end
+        end
+    end
+end)
+
+toggle(mTab, "Fly", 160, false, function(state) fly = state end)
+
+input(mTab, "WalkSpeed", 210, 16, function(val)
+    ws = val
+    local char = p.Character
+    if char and char:FindFirstChild("Humanoid") then
+        char.Humanoid.WalkSpeed = val
+    end
+end)
+
+input(mTab, "JumpPower", 260, 50, function(val)
+    jp = val
+    local char = p.Character
+    if char and char:FindFirstChild("Humanoid") then
+        char.Humanoid.JumpPower = val
+    end
+end)
+
+input(mTab, "Fly Speed", 310, 50, function(val) flySpd = val end)
+
+-- Combat
+toggle(cTab, "Kill Aura", 10, false, function(state) killAura = state end)
+
+-- Visuals
+toggle(vTab, "ESP (Hide'n Seek)", 10, false, function(state) esp = state end)
+
+-- Safety
+toggle(sTab, "Safe Mode (<20 HP)", 10, false, function(state) safeMode = state end)
+toggle(sTab, "Auto Teleport (10s)", 60, false, function(state) autoTp = state end)
+
+-- Закрытие
+C.MouseButton1Click:Connect(function() U:Destroy() end)
+u.InputBegan:Connect(function(inp, gp)
+    if inp.KeyCode == Enum.KeyCode.G and not gp then
+        U.Enabled = not U.Enabled
+    end
+end)
+
+-- Основной цикл
+local lastTp = 0
+r.Heartbeat:Connect(function(dt)
+    local char = p.Character
+    if not char then return end
+    local hrp = char:FindFirstChild("HumanoidRootPart")
+    local hum = char:FindFirstChild("Humanoid")
+    if not hrp or not hum then return end
+
+    hum.WalkSpeed = ws
+    hum.JumpPower = jp
+
+    -- Fly
+    if fly then
+        local vel = Vector3.new(0,0,0)
+        if u:IsKeyDown(Enum.KeyCode.W) then vel = vel + hrp.CFrame.LookVector * flySpd end
+        if u:IsKeyDown(Enum.KeyCode.S) then vel = vel - hrp.CFrame.LookVector * flySpd end
+        if u:IsKeyDown(Enum.KeyCode.A) then vel = vel - hrp.CFrame.RightVector * flySpd end
+        if u:IsKeyDown(Enum.KeyCode.D) then vel = vel + hrp.CFrame.RightVector * flySpd end
+        if u:IsKeyDown(Enum.KeyCode.Space) then vel = vel + Vector3.new(0, flySpd, 0) end
+        if u:IsKeyDown(Enum.KeyCode.LeftControl) then vel = vel - Vector3.new(0, flySpd, 0) end
+        hrp.Velocity = vel
+    end
+
+    -- Kill Aura
+    if killAura then
+        local target, dist = nil, math.huge
+        for _, plr in ipairs(g.Players:GetPlayers()) do
+            if plr ~= p and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+                local d = (hrp.Position - plr.Character.HumanoidRootPart.Position).Magnitude
+                if d < dist then
+                    target, dist = plr, d
+                end
+            end
+        end
+        if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+            local tPos = target.Character.HumanoidRootPart.Position
+            local offset = CFrame.new(hrp.Position, tPos) * CFrame.new(0,0,-3)
+            hrp.CFrame = CFrame.new(offset.Position, tPos)
+        end
+    end
+
+    -- Safe Mode
+    if safeMode and hum.Health < 20 then
+        if not autoTp then
+            hrp.CFrame = hrp.CFrame + Vector3.new(0, 150, 0)
+            safeMode = false
+        else
+            lastTp = lastTp + dt
+            if lastTp >= 10 then
+                lastTp = 0
+                hrp.CFrame = hrp.CFrame + Vector3.new(0, 150, 0)
+            end
+        end
+    end
+end)
+
+-- ESP
+r.RenderStepped:Connect(function()
+    local cam = workspace.CurrentCamera
+    if not cam then return end
+
+    if not esp then
+        for _, obj in ipairs(cam:GetChildren()) do
+            if obj.Name == "ESP_BOX" or obj.Name == "ESP_TEXT" then
+                obj:Destroy()
+            end
+        end
+        return
+    end
+
+    for _, plr in ipairs(g.Players:GetPlayers()) do
+        if plr ~= p and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local hrp = plr.Character.HumanoidRootPart
+            local isKiller = false
+            for _, child in ipairs(plr.Character:GetChildren()) do
+                if child:IsA("Tool") and (child.Name == "Knife" or child.Name == "Fork" or child.Name == "Bottle" or child.Name == "Fists") then
+                    isKiller = true
+                    break
+                end
+            end
+
+            -- Box
+            local box = Instance.new("BoxHandleAdornment")
+            box.Name = "ESP_BOX"
+            box.Adornee = hrp
+            box.Size = Vector3.new(2, 5, 1)
+            box.Color3 = isKiller and Color3.fromRGB(255,0,0) or Color3.fromRGB(0,100,255)
+            box.Transparency = 0.5
+            box.AlwaysOnTop = true
+            box.ZIndex = 10
+            box.Parent = cam
+
+            -- Name tag
+            local bill = Instance.new("BillboardGui")
+            bill.Name = "ESP_TEXT"
+            bill.Adornee = hrp
+            bill.Size = UDim2.new(0, 120, 0, 40)
+            bill.StudsOffset = Vector3.new(0, 3, 0)
+            bill.AlwaysOnTop = true
+            bill.Enabled = true  -- ✅ КРИТИЧНО ДЛЯ ОТОБРАЖЕНИЯ
+            bill.Parent = cam
+
+            local text = Instance.new("TextLabel")
+            text.BackgroundTransparency = 1
+            text.Size = UDim2.new(1, 0, 1, 0)
+            text.Text = plr.Name
+            text.TextColor3 = isKiller and Color3.fromRGB(255,100,100) or Color3.fromRGB(100,200,255)
+            text.TextStrokeColor3 = Color3.fromRGB(0,0,0)
+            text.TextStrokeTransparency = 0
+            text.TextSize = 16
+            text.Font = Enum.Font.GothamBold
+            text.Parent = bill
+        end
+    end
+end)
+
+print("✅ Karatel Hub загружен. Нажмите G для открытия меню.")
